@@ -1,7 +1,7 @@
-import bacImage from '../assets/img/com.png'
-import comImage from '../assets/img/com.png'
-import web1Image from '../assets/img/web1.png'
-import web2Image from '../assets/img/com.png'
+import bacImage from "../assets/img/web1.png";
+import comImage from "../assets/img/web1.png";
+import web1Image from "../assets/img/web1.png";
+import web2Image from "../assets/img/web1.png";
 
 // Mock articles data
 export const articlesData = [
