@@ -154,14 +154,11 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Backdrop for dropdowns */}
-      {(langDropdown || isOpen) && (
+      {/* Backdrop only for language dropdown */}
+      {langDropdown && (
         <div
           className="fixed inset-0 z-40"
-          onClick={() => {
-            setLangDropdown(false)
-            setIsOpen(false)
-          }}
+          onClick={() => setLangDropdown(false)}
         />
       )}
     </nav>
