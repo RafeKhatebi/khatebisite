@@ -155,7 +155,7 @@ const About = () => {
                 { name: 'Node.js', icon: '🟢' },
                 { name: 'TypeScript', icon: '🔷' },
                 { name: 'Python', icon: '🐍' },
-                { name: 'MongoDB', icon: '🍃' },
+                { name: 'Laravel', icon: '🖨️' },
                 { name: 'PostgreSQL', icon: '🐘' },
                 { name: 'AWS', icon: '☁️' },
                 { name: 'Docker', icon: '🐳' },
