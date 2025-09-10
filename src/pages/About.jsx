@@ -69,9 +69,9 @@ const About = () => {
               <div className="flex flex-col lg:flex-row items-center gap-8">
                 <div className="flex-shrink-0">
                   <div className="w-32 h-32 rounded-full bg-gradient-to-r from-primary-500 to-purple-600 p-1">
-                    <img 
-                      src={rafeImage} 
-                      alt="Rafe Ahmad Khatebi" 
+                    <img
+                      src={rafeImage}
+                      alt="Rafe Ahmad Khatebi"
                       className="w-full h-full rounded-full object-cover"
                     />
                   </div>
@@ -157,7 +157,7 @@ const About = () => {
                 { name: 'Python', icon: '🐍' },
                 { name: 'Laravel', icon: '🖨️' },
                 { name: 'PostgreSQL', icon: '🐘' },
-                { name: 'AWS', icon: '☁️' },
+                { name: 'Bootstrap', icon: '🅱️' },
                 { name: 'Docker', icon: '🐳' },
                 { name: 'Git', icon: '📝' },
                 { name: 'Figma', icon: '🎨' },
