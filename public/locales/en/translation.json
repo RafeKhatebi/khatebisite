@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "cv": "CV",
+    "portfolio": "Portfolio",
+    "articles": "Articles",
+    "contact": "Contact",
+    "language": "Language",
+    "name": "Rafe Ahmad Khatebi"
+  },
+  "home": {
+    "title": "Welcome to My Website",
+    "subtitle": "Full Stack Developer & UI/UX Designer",
+    "description": "I'm passionate about creating beautiful, functional, and user-centered digital experiences.",
+    "cta": "Get In Touch",
+    "viewWork": "View My Work"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "My Journey & Skills",
+    "experience": "Experience",
+    "skills": "Skills",
+    "technologies": "Technologies",
+    "bio": "I am a passionate full-stack developer with expertise in modern web technologies. I love creating innovative solutions and bringing ideas to life through code.",
+    "years": "Years of Experience",
+    "projects": "Projects Completed",
+    "clients": "Happy Clients"
+  },
+  "cv": {
+    "title": "Curriculum Vitae",
+    "subtitle": "My Professional Background",
+    "download": "Download PDF",
+    "jobTitle": "Full Stack Developer",
+    "email": "rkhatibi2003@gmail.com",
+    "phone": "+93 728 958 423",
+    "location": "Herat, Afghanistan",
+    "linkedin": "linkedin.com/in/khatebi2003",
+    "skills": "Technical Skills",
+    "experience": "Work Experience",
+    "education": "Education",
+    "languages": "Languages",
+    "skillCategories": {
+      "frontend": "Frontend Development",
+      "backend": "Backend Development",
+      "database": "Database Management",
+      "tools": "Development Tools"
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "My Recent Work",
+    "featuredProjects": "Featured Projects",
+    "otherProjects": "Other Projects",
+    "viewProject": "View Project",
+    "sourceCode": "Source Code",
+    "loading": "Loading projects...",
+    "error": "Failed to load projects"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Let's Work Together",
+    "sendMessage": "Send Message",
+    "getInTouch": "Get In Touch",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "locationLabel": "Location",
+    "availability": "Availability",
+    "availableForProjects": "Available for Projects",
+    "responseTime": "Response Time",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Failed to send message. Please try again.",
+    "social": "Follow Me"
+  },
+  "articles": {
+    "title": "Articles & Research",
+    "subtitle": "Scientific Articles and Technical Insights",
+    "allCategories": "All Categories",
+    "readMore": "Read More",
+    "backToList": "Back to Articles",
+    "publishedOn": "Published on",
+    "author": "Author",
+    "category": "Category",
+    "relatedArticles": "Related Articles",
+    "categories": {
+      "ai": "Artificial Intelligence",
+      "programming": "Programming",
+      "research": "Scientific Research"
+    },
+    "loading": "Loading articles...",
+    "error": "Failed to load articles",
+    "noArticles": "No articles found in this category"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "madeWith": "Made with ❤️ using React & Tailwind CSS"
+  },
+  "seo": {
+    "home": {
+      "title": "Rafe Ahmad Khatebi - Full Stack Web Developer",
+      "description": "Full Stack Web Developer specializing in React, TypeScript, PHP Laravel, and modern web technologies"
+    },
+    "about": {
+      "title": "About - Rafe Ahmad Khatebi",
+      "description": "Learn about my journey, skills, and experience as a full-stack web developer from Herat, Afghanistan"
+    },
+    "cv": {
+      "title": "CV - Rafe Ahmad Khatebi",
+      "description": "View and download my professional curriculum vitae - Computer Science student at Herat University"
+    },
+    "portfolio": {
+      "title": "Portfolio - Rafe Ahmad Khatebi",
+      "description": "Explore my projects including Motor-Components, Terminal-System, and other web applications"
+    },
+    "contact": {
+      "title": "Contact - Rafe Ahmad Khatebi",
+      "description": "Get in touch for collaboration opportunities - Based in Herat, Afghanistan"
+    },
+    "articles": {
+      "title": "Articles - Rafe Ahmad Khatebi",
+      "description": "Scientific articles and technical insights on AI, programming, and research"
+    }
+  }
+}
