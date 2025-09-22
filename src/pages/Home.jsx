@@ -35,6 +35,8 @@ const Home = () => {
                       alt="Rafe Ahmad Khatebi" 
                       className="w-full h-full rounded-full object-cover"
                       loading="eager"
+                      decoding="async"
+                      fetchpriority="high"
                     />
                   </div>
                   <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-full border-2 sm:border-4 border-white flex items-center justify-center">

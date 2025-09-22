@@ -54,6 +54,8 @@ const CV = () => {
                     src={rafeImage} 
                     alt="Rafe Ahmad Khatebi" 
                     className="w-full h-full rounded-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

@@ -17,6 +17,9 @@ i18n
     
     backend: {
       loadPath: '/locales/{{lng}}/translation.json',
+      requestOptions: {
+        cache: 'force-cache'
+      }
     },
     
     detection: {
@@ -25,8 +28,14 @@ i18n
     },
     
     react: {
-      useSuspense: false,
+      useSuspense: true,
     },
+    
+    load: 'languageOnly',
+    preload: ['en'],
+    
+    saveMissing: false,
+    updateMissing: false,
   });
 
 export default i18n;

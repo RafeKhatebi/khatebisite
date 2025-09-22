@@ -1,27 +1,32 @@
 import { Routes, Route } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { ThemeProvider } from './contexts/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Home from './pages/Home'
-import About from './pages/About'
-import CV from './pages/CV'
-import Portfolio from './pages/Portfolio'
-import Articles from './pages/Articles'
-import ArticleDetail from './pages/ArticleDetail'
-import Contact from './pages/Contact'
-import SimpleLogin from './admin/pages/SimpleLogin'
-import SimpleDashboard from './admin/pages/SimpleDashboard'
-import SimpleProjectsManager from './admin/pages/SimpleProjectsManager'
-import SimpleSkillsManager from './admin/pages/SimpleSkillsManager'
-import SimpleMessagesManager from './admin/pages/SimpleMessagesManager'
-import SimpleExperienceManager from './admin/pages/SimpleExperienceManager'
-import SimpleArticlesManager from './admin/pages/SimpleArticlesManager'
-import SimpleEducationManager from './admin/pages/SimpleEducationManager'
-import SimpleSettingsManager from './admin/pages/SimpleSettingsManager'
+import SkeletonLoader from './components/SkeletonLoader'
 import { initializeData } from './utils/initializeData'
+
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home'))
+const About = lazy(() => import('./pages/About'))
+const CV = lazy(() => import('./pages/CV'))
+const Portfolio = lazy(() => import('./pages/Portfolio'))
+const Articles = lazy(() => import('./pages/Articles'))
+const ArticleDetail = lazy(() => import('./pages/ArticleDetail'))
+const Contact = lazy(() => import('./pages/Contact'))
+
+// Lazy load admin pages
+const SimpleLogin = lazy(() => import('./admin/pages/SimpleLogin'))
+const SimpleDashboard = lazy(() => import('./admin/pages/SimpleDashboard'))
+const SimpleProjectsManager = lazy(() => import('./admin/pages/SimpleProjectsManager'))
+const SimpleSkillsManager = lazy(() => import('./admin/pages/SimpleSkillsManager'))
+const SimpleMessagesManager = lazy(() => import('./admin/pages/SimpleMessagesManager'))
+const SimpleExperienceManager = lazy(() => import('./admin/pages/SimpleExperienceManager'))
+const SimpleArticlesManager = lazy(() => import('./admin/pages/SimpleArticlesManager'))
+const SimpleEducationManager = lazy(() => import('./admin/pages/SimpleEducationManager'))
+const SimpleSettingsManager = lazy(() => import('./admin/pages/SimpleSettingsManager'))
 
 function App() {
   const { i18n } = useTranslation()
@@ -53,59 +58,61 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider>
         <div className="min-h-screen flex flex-col">
-          <Routes>
-          <Route path="/admin" element={<SimpleLogin onLogin={handleAdminLogin} />} />
-          <Route path="/admin/login" element={<SimpleLogin onLogin={handleAdminLogin} />} />
-          <Route path="/admin/dashboard" element={
-            isAdminAuthenticated ? <SimpleDashboard /> : <SimpleLogin onLogin={handleAdminLogin} />
-          } />
-          <Route path="/admin/projects" element={
-            isAdminAuthenticated ? <SimpleProjectsManager /> : <SimpleLogin onLogin={handleAdminLogin} />
-          } />
-          <Route path="/admin/skills" element={
-            isAdminAuthenticated ? <SimpleSkillsManager /> : <SimpleLogin onLogin={handleAdminLogin} />
-          } />
-          <Route path="/admin/messages" element={
-            isAdminAuthenticated ? <SimpleMessagesManager /> : <SimpleLogin onLogin={handleAdminLogin} />
-          } />
-          <Route path="/admin/experience" element={
-            isAdminAuthenticated ? <SimpleExperienceManager /> : <SimpleLogin onLogin={handleAdminLogin} />
-          } />
-          <Route path="/admin/articles" element={
-            isAdminAuthenticated ? <SimpleArticlesManager /> : <SimpleLogin onLogin={handleAdminLogin} />
-          } />
-          <Route path="/admin/education" element={
-            isAdminAuthenticated ? <SimpleEducationManager /> : <SimpleLogin onLogin={handleAdminLogin} />
-          } />
-          <Route path="/admin/settings" element={
-            isAdminAuthenticated ? <SimpleSettingsManager /> : <SimpleLogin onLogin={handleAdminLogin} />
-          } />
-          <Route path="/*" element={
-            <>
-              <Navbar />
-              <main className="flex-grow">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/cv" element={<CV />} />
-                  <Route path="/portfolio" element={<Portfolio />} />
-                  <Route path="/articles" element={<Articles />} />
-                  <Route path="/articles/:category/:slug" element={<ArticleDetail />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="*" element={
-                    <div className="min-h-screen flex items-center justify-center">
-                      <div className="text-center">
-                        <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
-                        <p className="text-gray-600">Page not found</p>
+          <Suspense fallback={<SkeletonLoader />}>
+            <Routes>
+            <Route path="/admin" element={<SimpleLogin onLogin={handleAdminLogin} />} />
+            <Route path="/admin/login" element={<SimpleLogin onLogin={handleAdminLogin} />} />
+            <Route path="/admin/dashboard" element={
+              isAdminAuthenticated ? <SimpleDashboard /> : <SimpleLogin onLogin={handleAdminLogin} />
+            } />
+            <Route path="/admin/projects" element={
+              isAdminAuthenticated ? <SimpleProjectsManager /> : <SimpleLogin onLogin={handleAdminLogin} />
+            } />
+            <Route path="/admin/skills" element={
+              isAdminAuthenticated ? <SimpleSkillsManager /> : <SimpleLogin onLogin={handleAdminLogin} />
+            } />
+            <Route path="/admin/messages" element={
+              isAdminAuthenticated ? <SimpleMessagesManager /> : <SimpleLogin onLogin={handleAdminLogin} />
+            } />
+            <Route path="/admin/experience" element={
+              isAdminAuthenticated ? <SimpleExperienceManager /> : <SimpleLogin onLogin={handleAdminLogin} />
+            } />
+            <Route path="/admin/articles" element={
+              isAdminAuthenticated ? <SimpleArticlesManager /> : <SimpleLogin onLogin={handleAdminLogin} />
+            } />
+            <Route path="/admin/education" element={
+              isAdminAuthenticated ? <SimpleEducationManager /> : <SimpleLogin onLogin={handleAdminLogin} />
+            } />
+            <Route path="/admin/settings" element={
+              isAdminAuthenticated ? <SimpleSettingsManager /> : <SimpleLogin onLogin={handleAdminLogin} />
+            } />
+            <Route path="/*" element={
+              <>
+                <Navbar />
+                <main className="flex-grow">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/cv" element={<CV />} />
+                    <Route path="/portfolio" element={<Portfolio />} />
+                    <Route path="/articles" element={<Articles />} />
+                    <Route path="/articles/:category/:slug" element={<ArticleDetail />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={
+                      <div className="min-h-screen flex items-center justify-center">
+                        <div className="text-center">
+                          <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
+                          <p className="text-gray-600">Page not found</p>
+                        </div>
                       </div>
-                    </div>
-                  } />
-                </Routes>
-              </main>
-              <Footer />
-            </>
-          } />
-          </Routes>
+                    } />
+                  </Routes>
+                </main>
+                <Footer />
+              </>
+            } />
+            </Routes>
+          </Suspense>
         </div>
       </ThemeProvider>
     </ErrorBoundary>

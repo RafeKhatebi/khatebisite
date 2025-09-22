@@ -1,3 +1,12 @@
+const SkeletonLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100">
+    <div className="text-center">
+      <div className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin mx-auto mb-4"></div>
+      <div className="h-4 bg-gray-300 rounded w-32 mx-auto animate-pulse"></div>
+    </div>
+  </div>
+)
+
 const SkeletonCard = () => (
   <div className="card animate-pulse">
     <div className="h-48 bg-gray-300 dark:bg-gray-600 rounded-lg mb-4"></div>
@@ -54,4 +63,5 @@ const SkeletonSkill = () => (
   </div>
 )
 
+export default SkeletonLoader
 export { SkeletonCard, SkeletonProfile, SkeletonSkill }
