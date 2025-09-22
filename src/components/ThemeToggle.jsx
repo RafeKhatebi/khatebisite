@@ -13,27 +13,26 @@ const MoonIcon = () => (
 )
 
 const ThemeToggle = () => {
-  const themeContext = useTheme()
-  
-  if (!themeContext) {
+  try {
+    const { isDark, toggleTheme } = useTheme()
+
+    return (
+      <button
+        onClick={toggleTheme}
+        className="p-2 sm:p-2.5 rounded-lg sm:rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 shadow-sm"
+        aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      >
+        {isDark ? <SunIcon /> : <MoonIcon />}
+      </button>
+    )
+  } catch (error) {
+    console.error('Theme context error:', error)
     return (
       <button className="p-2 rounded-lg bg-gray-100 text-gray-700" disabled>
         <MoonIcon />
       </button>
     )
   }
-  
-  const { isDark, toggleTheme } = themeContext
-
-  return (
-    <button
-      onClick={toggleTheme}
-      className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-    >
-      {isDark ? <SunIcon /> : <MoonIcon />}
-    </button>
-  )
 }
 
 export default ThemeToggle

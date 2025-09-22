@@ -64,17 +64,17 @@ const Contact = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-50 py-6 sm:py-12">
+        <div className="container-mobile">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="section-title">{t('contact.title')}</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="heading-responsive font-bold text-gray-900 mb-4">{t('contact.title')}</h1>
+            <p className="text-responsive text-gray-600 max-w-3xl mx-auto">
               {t('contact.subtitle')}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
             {/* Contact Form */}
             <div className="card">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('contact.sendMessage')}</h2>
@@ -92,7 +92,7 @@ const Contact = () => {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       {t('contact.name')} *
@@ -104,7 +104,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
                       placeholder="Your name"
                     />
                   </div>
@@ -119,7 +119,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -136,7 +136,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
                     placeholder="What's this about?"
                   />
                 </div>
@@ -152,7 +152,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors resize-vertical"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-vertical text-base"
                     placeholder="Tell me about your project or idea..."
                   />
                 </div>
@@ -160,7 +160,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-primary py-3 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full touch-target btn-primary py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isSubmitting ? t('contact.sending') : t('contact.send')}
                 </button>
@@ -215,17 +215,17 @@ const Contact = () => {
               {/* Social Media Links */}
               <div className="card">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('contact.social')}</h2>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center space-x-3 rtl:space-x-reverse p-3 rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-200 text-gray-600 ${social.color} hover:shadow-md transform hover:-translate-y-1`}
+                      className={`touch-target flex items-center space-x-3 rtl:space-x-reverse p-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-200 text-gray-600 ${social.color} hover:shadow-md transform hover:-translate-y-1`}
                     >
                       {social.icon}
-                      <span className="font-medium">{social.name}</span>
+                      <span className="font-medium text-sm sm:text-base">{social.name}</span>
                     </a>
                   ))}
                 </div>

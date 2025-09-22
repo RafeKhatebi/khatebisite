@@ -36,14 +36,14 @@ const Navbar = () => {
   }, [])
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-lg border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 backdrop-blur-sm bg-white/95 dark:bg-gray-900/95">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-        <div className="flex justify-between items-center h-14 sm:h-16">
-          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 rtl:space-x-reverse group">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-600 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-              <span className="text-white font-bold text-sm sm:text-lg">RK</span>
+    <nav className="bg-white dark:bg-gray-900 shadow-lg border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 safe-top">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 sm:h-18">
+          <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse group touch-target">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <span className="text-white font-bold text-lg sm:text-xl">RK</span>
             </div>
-            <span className="font-bold text-lg sm:text-xl text-gray-900 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors hidden xs:block">
+            <span className="font-bold text-xl sm:text-2xl text-gray-900 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors hidden sm:block">
               {t('nav.name')}
             </span>
           </Link>
@@ -181,9 +181,10 @@ const Navbar = () => {
             
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+              className="touch-target p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -196,7 +197,7 @@ const Navbar = () => {
 
         {isOpen && (
           <div className="lg:hidden">
-            <div className="px-3 pt-3 pb-4 space-y-2 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg">
+            <div className="px-4 pt-4 pb-6 space-y-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto">
               <Link
                 to="/"
                 className={`mobile-nav-link ${location.pathname === '/' ? 'text-primary-600 dark:text-primary-400' : ''}`}
@@ -260,45 +261,45 @@ const Navbar = () => {
               <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
                   <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-3">Language</span>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 gap-2">
                     <button
                       onClick={() => {
                         changeLanguage('en')
                         setIsOpen(false)
                       }}
-                      className={`px-2 py-2 text-xs sm:text-sm rounded-lg transition-all duration-200 font-medium ${
+                      className={`touch-target px-4 py-3 text-base rounded-lg transition-all duration-200 font-medium ${
                         i18n.language === 'en' 
                           ? 'bg-primary-600 text-white shadow-sm' 
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                     >
-                      🇺🇸 EN
+                      🇺🇸 English
                     </button>
                     <button
                       onClick={() => {
                         changeLanguage('fa')
                         setIsOpen(false)
                       }}
-                      className={`px-2 py-2 text-xs sm:text-sm rounded-lg transition-all duration-200 font-medium ${
+                      className={`touch-target px-4 py-3 text-base rounded-lg transition-all duration-200 font-medium ${
                         i18n.language === 'fa' 
                           ? 'bg-primary-600 text-white shadow-sm' 
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                     >
-                      🇮🇷 فا
+                      🇮🇷 فارسی
                     </button>
                     <button
                       onClick={() => {
                         changeLanguage('ps')
                         setIsOpen(false)
                       }}
-                      className={`px-2 py-2 text-xs sm:text-sm rounded-lg transition-all duration-200 font-medium ${
+                      className={`touch-target px-4 py-3 text-base rounded-lg transition-all duration-200 font-medium ${
                         i18n.language === 'ps' 
                           ? 'bg-primary-600 text-white shadow-sm' 
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                     >
-                      🇦🇫 پښ
+                      🇦🇫 پښتو
                     </button>
                   </div>
                 </div>

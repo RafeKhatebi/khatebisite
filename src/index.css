@@ -5,6 +5,10 @@
 @layer base {
   html {
     font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
   
   html[dir="rtl"] {
@@ -12,7 +16,17 @@
   }
   
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-gray-50 text-gray-900 overflow-x-hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  img, video {
+    @apply max-w-full h-auto;
+  }
+  
+  button, [role="button"], input[type="submit"], input[type="button"] {
+    @apply min-h-[44px] min-w-[44px];
   }
 }
 
@@ -43,7 +57,23 @@
   }
   
   .mobile-nav-link {
-    @apply block px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors;
+    @apply block px-4 py-3 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors min-h-[44px] flex items-center;
+  }
+  
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+  
+  .container-mobile {
+    @apply px-4 sm:px-6 lg:px-8 mx-auto;
+  }
+  
+  .text-responsive {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+  
+  .heading-responsive {
+    @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
   }
 }
 
