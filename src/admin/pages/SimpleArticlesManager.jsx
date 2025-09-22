@@ -20,6 +20,10 @@ const SimpleArticlesManager = () => {
     localStorage.setItem('siteData', JSON.stringify(data))
     setArticles(newArticles)
     
+    // Export to file format for production
+    console.log('Copy this to articles.js:')
+    console.log('export const articlesData = ' + JSON.stringify(newArticles, null, 2))
+    
     // Dispatch custom event to notify other components
     window.dispatchEvent(new CustomEvent('articlesUpdated'))
   }
@@ -57,9 +61,21 @@ const SimpleArticlesManager = () => {
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Articles Manager</h1>
-        <button onClick={handleAdd} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Add Article
-        </button>
+        <div className="flex gap-2">
+          <button 
+            onClick={() => {
+              const exportData = `export const articlesData = ${JSON.stringify(articles, null, 2)}`
+              navigator.clipboard.writeText(exportData)
+              alert('Articles data copied to clipboard! Paste it in articles.js file')
+            }}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Export to File
+          </button>
+          <button onClick={handleAdd} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Add Article
+          </button>
+        </div>
       </div>
 
       {showForm && (

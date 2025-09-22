@@ -62,7 +62,7 @@ export const initializeData = () => {
         details: '7th Semester, GPA: 92.95%'
       }
     ],
-    articles: articlesData,
+    articles: JSON.parse(localStorage.getItem('siteData'))?.articles || articlesData,
     messages: []
   }
 
