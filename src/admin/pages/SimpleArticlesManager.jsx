@@ -19,6 +19,9 @@ const SimpleArticlesManager = () => {
     data.articles = newArticles
     localStorage.setItem('siteData', JSON.stringify(data))
     setArticles(newArticles)
+    
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new CustomEvent('articlesUpdated'))
   }
 
   const handleAdd = () => {

@@ -12,10 +12,32 @@ const Articles = () => {
     const currentLang = i18n.language
 
     useEffect(() => {
-        const data = JSON.parse(localStorage.getItem('siteData') || '{}')
-        const articlesData = data.articles || []
-        setArticles(articlesData)
-        setFilteredArticles(articlesData)
+        const loadArticles = () => {
+            const data = JSON.parse(localStorage.getItem('siteData') || '{}')
+            const articlesData = data.articles || []
+            setArticles(articlesData)
+            setFilteredArticles(articlesData)
+        }
+
+        loadArticles()
+
+        // Listen for localStorage changes
+        const handleStorageChange = (e) => {
+            if (e.key === 'siteData') {
+                loadArticles()
+            }
+        }
+
+        window.addEventListener('storage', handleStorageChange)
+        
+        // Custom event for same-tab updates
+        const handleCustomUpdate = () => loadArticles()
+        window.addEventListener('articlesUpdated', handleCustomUpdate)
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange)
+            window.removeEventListener('articlesUpdated', handleCustomUpdate)
+        }
     }, [])
 
     useEffect(() => {
