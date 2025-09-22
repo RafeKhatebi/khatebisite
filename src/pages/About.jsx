@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import rafeImage from '../assets/img/rafe.jpg'
+import { SkeletonProfile, SkeletonSkill } from '../components/SkeletonLoader'
 
 const About = () => {
   const { t } = useTranslation()
@@ -105,15 +106,15 @@ const About = () => {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-8">{t('about.skills')}</h2>
               <div className="space-y-6">
-                {skills.map((skill) => (
-                  <div key={skill.name} className="card">
+                {skills.map((skill, index) => (
+                  <div key={skill.name} className="card fade-in-left" style={{animationDelay: `${index * 0.1}s`}}>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-gray-900">{skill.name}</span>
-                      <span className="text-sm text-gray-600">{skill.level}%</span>
+                      <span className="font-medium text-gray-900 dark:text-gray-100">{skill.name}</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                       <div
-                        className={`h-2 rounded-full ${skill.color} transition-all duration-1000 ease-out`}
+                        className={`h-2 rounded-full ${skill.color} transition-all duration-1000 ease-out hover:shadow-lg`}
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
@@ -126,18 +127,18 @@ const About = () => {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-8">{t('about.experience')}</h2>
               <div className="space-y-6">
-                {experiences.map((exp) => (
-                  <div key={`${exp.title}-${exp.company}`} className="card border-l-4 border-primary-500">
+                {experiences.map((exp, index) => (
+                  <div key={`${exp.title}-${exp.company}`} className="card border-l-4 border-primary-500 hover:border-primary-600 card-hover fade-in-right" style={{animationDelay: `${index * 0.1}s`}}>
                     <div className="mb-4">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
                         {exp.title}
                       </h3>
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
-                        <span className="text-primary-600 font-medium">{exp.company}</span>
-                        <span className="text-sm text-gray-500">{exp.period}</span>
+                        <span className="text-primary-600 dark:text-primary-400 font-medium">{exp.company}</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{exp.period}</span>
                       </div>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                       {exp.description}
                     </p>
                   </div>
@@ -164,9 +165,9 @@ const About = () => {
                 { name: 'Tailwind', icon: '💨' },
                 { name: 'Next.js', icon: '▲' }
               ].map((tech, index) => (
-                <div key={index} className="card text-center hover:shadow-lg transition-shadow duration-300">
-                  <div className="text-3xl mb-2">{tech.icon}</div>
-                  <div className="text-sm font-medium text-gray-700">{tech.name}</div>
+                <div key={index} className="card text-center card-hover fade-in-up" style={{animationDelay: `${index * 0.05}s`}}>
+                  <div className="text-3xl mb-2 transform hover:scale-110 transition-transform duration-200">{tech.icon}</div>
+                  <div className="text-sm font-medium text-gray-700 dark:text-gray-300">{tech.name}</div>
                 </div>
               ))}
             </div>

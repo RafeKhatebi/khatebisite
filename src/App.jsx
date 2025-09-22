@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from './contexts/ThemeContext'
+import ErrorBoundary from './components/ErrorBoundary'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -49,9 +50,10 @@ function App() {
   }
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen flex flex-col">
-        <Routes>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <div className="min-h-screen flex flex-col">
+          <Routes>
           <Route path="/admin" element={<SimpleLogin onLogin={handleAdminLogin} />} />
           <Route path="/admin/login" element={<SimpleLogin onLogin={handleAdminLogin} />} />
           <Route path="/admin/dashboard" element={
@@ -103,9 +105,10 @@ function App() {
               <Footer />
             </>
           } />
-        </Routes>
-      </div>
-    </ThemeProvider>
+          </Routes>
+        </div>
+      </ThemeProvider>
+    </ErrorBoundary>
   )
 }
 

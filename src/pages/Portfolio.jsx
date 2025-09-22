@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import { portfolioAPI } from '../services/api'
 import { mockProjects } from '../data/projectsData'
+import { SkeletonCard } from '../components/SkeletonLoader'
 
 const Portfolio = () => {
   const { t } = useTranslation()
@@ -41,10 +42,17 @@ const Portfolio = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">{t('portfolio.loading')}</p>
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="h-10 bg-gray-300 rounded w-64 mx-auto mb-4 animate-pulse"></div>
+            <div className="h-6 bg-gray-300 rounded w-96 mx-auto animate-pulse"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, index) => (
+              <SkeletonCard key={index} />
+            ))}
+          </div>
         </div>
       </div>
     )

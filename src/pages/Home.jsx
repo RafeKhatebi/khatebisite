@@ -17,7 +17,11 @@ const Home = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
+        </div>
         {/* Hero Section */}
         <section className="pt-8 sm:pt-16 pb-16 sm:pb-24 container-mobile">
           <div className="max-w-4xl mx-auto">
@@ -41,27 +45,27 @@ const Home = () => {
 
               {/* Hero Content */}
               <div className="space-y-4 sm:space-y-6">
-                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight fade-in">
+                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight fade-in-up hero-title">
                   {t('home.title')}
                 </h1>
-                <p className="text-lg sm:text-xl md:text-2xl text-primary-600 font-medium fade-in">
+                <p className="text-lg sm:text-xl md:text-2xl text-primary-600 font-medium fade-in-up" style={{animationDelay: '0.2s'}}>
                   {t('home.subtitle')}
                 </p>
-                <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed fade-in px-4">
+                <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed fade-in-up px-4" style={{animationDelay: '0.4s'}}>
                   {t('home.description')}
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 fade-in">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 fade-in-up" style={{animationDelay: '0.6s'}}>
                   <Link
                     to="/contact"
-                    className="w-full sm:w-auto touch-target btn-primary px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                    className="w-full sm:w-auto touch-target btn-primary px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg button-hover"
                   >
                     {t('home.cta')}
                   </Link>
                   <Link
                     to="/portfolio"
-                    className="w-full sm:w-auto touch-target btn-secondary px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                    className="w-full sm:w-auto touch-target btn-secondary px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg button-hover"
                   >
                     {t('home.viewWork')}
                   </Link>
@@ -91,7 +95,8 @@ const Home = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <Link
                 to="/about"
-                className="card hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 group touch-target p-6"
+                className="card card-hover group touch-target p-6 fade-in-up"
+                style={{animationDelay: '0.1s'}}
               >
                 <div className="text-center">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-primary-200 transition-colors">
@@ -106,7 +111,8 @@ const Home = () => {
 
               <Link
                 to="/cv"
-                className="card hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 group touch-target p-6"
+                className="card card-hover group touch-target p-6 fade-in-up"
+                style={{animationDelay: '0.2s'}}
               >
                 <div className="text-center">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
@@ -121,7 +127,8 @@ const Home = () => {
 
               <Link
                 to="/portfolio"
-                className="card hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 group touch-target p-6"
+                className="card card-hover group touch-target p-6 fade-in-up"
+                style={{animationDelay: '0.3s'}}
               >
                 <div className="text-center">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
@@ -136,7 +143,8 @@ const Home = () => {
 
               <Link
                 to="/contact"
-                className="card hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 group touch-target p-6"
+                className="card card-hover group touch-target p-6 fade-in-up"
+                style={{animationDelay: '0.4s'}}
               >
                 <div className="text-center">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-colors">

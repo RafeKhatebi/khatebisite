@@ -42,12 +42,9 @@ const LazyImage = ({
   return (
     <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
       {!isLoaded && (
-        <img
-          src={placeholder}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover blur-sm"
-          aria-hidden="true"
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-50 animate-shimmer" />
+        </div>
       )}
       
       {isInView && (
@@ -56,8 +53,8 @@ const LazyImage = ({
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
+          className={`w-full h-full object-cover transition-all duration-500 transform ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           }`}
           loading="lazy"
           {...props}

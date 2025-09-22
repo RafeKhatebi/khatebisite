@@ -14,6 +14,23 @@ const Contact = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', or null
+  const [errors, setErrors] = useState({})
+
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'name':
+        return value.trim().length < 2 ? 'Name must be at least 2 characters' : ''
+      case 'email':
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return !emailRegex.test(value) ? 'Please enter a valid email address' : ''
+      case 'subject':
+        return value.trim().length < 3 ? 'Subject must be at least 3 characters' : ''
+      case 'message':
+        return value.trim().length < 10 ? 'Message must be at least 10 characters' : ''
+      default:
+        return ''
+    }
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -21,12 +38,45 @@ const Contact = () => {
       ...prev,
       [name]: value
     }))
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
+  }
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target
+    const error = validateField(name, value)
+    if (error) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: error
+      }))
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    // Validate all fields
+    const newErrors = {}
+    Object.keys(formData).forEach(key => {
+      const error = validateField(key, formData[key])
+      if (error) newErrors[key] = error
+    })
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+    
     setIsSubmitting(true)
     setSubmitStatus(null)
+    setErrors({})
 
     try {
       // In a real application, this would send to the API
@@ -103,10 +153,14 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+                      className={`w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base ${
+                        errors.name ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       placeholder="Your name"
                     />
+                    {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -118,10 +172,14 @@ const Contact = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+                      className={`w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base ${
+                        errors.email ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       placeholder="your.email@example.com"
                     />
+                    {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
                   </div>
                 </div>
 
@@ -135,10 +193,14 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+                    className={`w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base ${
+                      errors.subject ? 'border-red-500' : 'border-gray-300'
+                    }`}
                     placeholder="What's this about?"
                   />
+                  {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
                 </div>
 
                 <div>
@@ -150,11 +212,15 @@ const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-vertical text-base"
+                    className={`w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-vertical text-base ${
+                      errors.message ? 'border-red-500' : 'border-gray-300'
+                    }`}
                     placeholder="Tell me about your project or idea..."
                   />
+                  {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
                 </div>
 
                 <button
