@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import rafeImage from '../assets/img/rafe.jpg'
-import cvFile from '../assets/new-2025-cv.pdf'
+import cvFile from '../assets/new-cv-2025.pdf'
 import { technicalSkills, workExperience, education, languages } from '../data/cvData'
 
 const CV = () => {
