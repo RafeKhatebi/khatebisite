@@ -1,28 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
-import { articlesData } from '../data/articles'
 
 const ArticleDetail = () => {
   const { category, slug } = useParams()
   const { t, i18n } = useTranslation()
   const currentLang = i18n.language
+  const [articles, setArticles] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  // Find the article by slug
-  const article = articlesData.find(a => a.slug === slug && a.category === category)
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('siteData') || '{}')
+    setArticles(data.articles || [])
+    setLoading(false)
+  }, [])
 
-  if (!article) {
-    return <Navigate to="/articles" replace />
-  }
+  const article = articles.find(a => a.slug === slug && a.category === category)
 
   const formatDate = React.useCallback((dateString) => {
     const date = new Date(dateString)
     return date.toLocaleDateString(currentLang === 'fa' ? 'fa-IR' : currentLang === 'ps' ? 'ps-AF' : 'en-US')
   }, [currentLang])
 
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>
+  }
+
+  if (!article) {
+    return <Navigate to="/articles" replace />
+  }
+
   // Get related articles (same category, excluding current)
-  const relatedArticles = articlesData
+  const relatedArticles = articles
     .filter(a => a.category === article.category && a.id !== article.id)
     .slice(0, 3)
 

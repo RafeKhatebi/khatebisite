@@ -37,6 +37,14 @@
     @apply opacity-0 animate-pulse;
     animation: fadeIn 0.6s ease-in-out forwards;
   }
+  
+  .nav-link {
+    @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800;
+  }
+  
+  .mobile-nav-link {
+    @apply block px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors;
+  }
 }
 
 @keyframes fadeIn {

@@ -2,20 +2,28 @@ import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { articlesData, categories } from '../data/articles'
+import { categories } from '../data/articles'
 
 const Articles = () => {
     const { t, i18n } = useTranslation()
     const [selectedCategory, setSelectedCategory] = useState('all')
-    const [filteredArticles, setFilteredArticles] = useState(articlesData)
+    const [filteredArticles, setFilteredArticles] = useState([])
+    const [articles, setArticles] = useState([])
     const currentLang = i18n.language
 
     useEffect(() => {
+        const data = JSON.parse(localStorage.getItem('siteData') || '{}')
+        const articlesData = data.articles || []
+        setArticles(articlesData)
+        setFilteredArticles(articlesData)
+    }, [])
+
+    useEffect(() => {
         const filtered = selectedCategory === 'all' 
-            ? articlesData 
-            : articlesData.filter(article => article.category === selectedCategory)
+            ? articles 
+            : articles.filter(article => article.category === selectedCategory)
         setFilteredArticles(filtered)
-    }, [selectedCategory])
+    }, [selectedCategory, articles])
 
     const formatDate = (dateString) => {
         const date = new Date(dateString)
